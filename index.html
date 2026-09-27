@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafetrack - Coffee Landing Page</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --coffee-orange: #d29650;
+            --coffee-dark: #1a0f0a;
+            --coffee-brown: #2d1810;
+            --coffee-light: #a08060;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--coffee-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: transparent !important;
+            padding: 20px 0;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--coffee-orange) !important;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: 16px;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--coffee-orange) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d0805 0%, #1a0f0a 40%, #2d1810 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 80px 0;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 50%, rgba(45, 24, 16, 0.5) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title-coffee {
+            font-size: 80px;
+            font-weight: 900;
+            color: var(--coffee-orange);
+            line-height: 1;
+            margin-bottom: 0;
+            letter-spacing: 3px;
+        }
+
+        .hero-title-landing {
+            font-size: 60px;
+            font-weight: 900;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero-divider {
+            width: 100%;
+            max-width: 500px;
+            height: 2px;
+            background-color: white;
+            margin-bottom: 25px;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            color: #c0a080;
+            line-height: 1.8;
+            max-width: 450px;
+            margin-bottom: 30px;
+        }
+
+        .btn-learn-more {
+            background-color: var(--coffee-orange);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-learn-more:hover {
+            background-color: #e0a860;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(210, 150, 80, 0.3);
+        }
+
+        /* Social Icons */
+        .social-icons {
+            margin-top: 40px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+            margin-right: 20px;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: var(--coffee-orange);
+        }
+
+        /* Hero Image Side */
+        .hero-image-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .coffee-setup-img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+        }
+
+        /* About Marylane Section */
+        .about-section {
+            background: linear-gradient(135deg, #2d1810 0%, #1a0f0a 100%);
+            padding: 80px 0;
+            border-top: 1px solid rgba(210, 150, 80, 0.2);
+        }
+
+        .about-title {
+            color: var(--coffee-orange);
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .about-text {
+            color: #c0a080;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .about-text strong {
+            color: white;
+        }
+
+        .founder-card {
+            background: rgba(30, 20, 15, 0.8);
+            border: 1px solid rgba(210, 150, 80, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .founder-icon {
+            font-size: 80px;
+            color: var(--coffee-orange);
+            margin-bottom: 15px;
+        }
+
+        .founder-name {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .founder-role {
+            color: var(--coffee-orange);
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Features Section */
+        .features-section {
+            background-color: #0d0805;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            color: var(--coffee-orange);
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: rgba(45, 24, 16, 0.5);
+            border: 1px solid rgba(210, 150, 80, 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--coffee-orange);
+            box-shadow: 0 10px 30px rgba(210, 150, 80, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: var(--coffee-orange);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .feature-text {
+            color: #a08060;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--coffee-orange) 0%, #a07030 100%);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .cta-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .btn-cta {
+            background-color: var(--coffee-dark);
+            color: white;
+            border: 2px solid white;
+            padding: 12px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: white;
+            color: var(--coffee-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0604;
+            color: #806040;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(210, 150, 80, 0.1);
+        }
+
+        footer a {
+            color: var(--coffee-orange);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title-coffee {
+                font-size: 60px;
+            }
+            .hero-title-landing {
+                font-size: 45px;
+            }
+            .hero-image-container {
+                margin-top: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title-coffee {
+                font-size: 48px;
+            }
+            .hero-title-landing {
+                font-size: 36px;
+            }
+            .nav-link {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">☕ CAFETRACK</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title-coffee">COFFEE</h1>
+                    <h2 class="hero-title-landing">LANDING PAGE</h2>
+                    <div class="hero-divider"></div>
+                    <p class="hero-description">
+                        Welcome to <strong>Cafetrack</strong>, your ultimate solution for managing coffee shop inventory with ease. Our system helps you track stock, reduce waste, and optimize your cafe operations, so you can focus on serving the perfect cup of coffee.
+                    </p>
+
+                    <p class="about-text mt-3">
+                        With a deep love for coffee and a keen eye for efficiency, Marylane built Cafetrack to empower small and medium cafes to focus on what they do best serving great coffee.
+                    </p>
+                    <a href="register.html" class="btn-learn-more">Learn More</a>
+                    
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 hero-image-container">
+                    <!-- Coffee setup image - using a placeholder that matches the theme -->
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=500&fit=crop" 
+                         alt="Coffee cup and brewing equipment on wooden surface" 
+                         class="coffee-setup-img rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="bi bi-box-seam"></i></div>
+                        <h4 class="feature-title">Real-Time Stock</h4>
+                        <p class="feature-text">Automatically deduct ingredients as orders are placed. Never run out of espresso beans during rush hour.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="bi bi-graph-down-arrow"></i></div>
+                        <h4 class="feature-title">Waste Reduction</h4>
+                        <p class="feature-text">Track spoilage and expiration dates. Get alerts when items are about to expire to save money.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="bi bi-bar-chart-line"></i></div>
+                        <h4 class="feature-title">Smart Analytics</h4>
+                        <p class="feature-text">Visualize your best-selling items and peak hours to optimize your purchasing schedule.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h3 class="cta-title">Ready to get started?</h3>
+            <p class="cta-text">Join hundreds of cafe owners managing their inventory efficiently.</p>
+            <a href="register.html" class="btn-cta">Create Account</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2026 Cafetrack Systems. All rights reserved. | Founded by <a href="#about">Marylane Lipa</a></p>
+            <p><small>IT314 Activity Project</small></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
